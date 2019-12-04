@@ -57,28 +57,28 @@ print(player.cur_room.description)
 def movement(command, player):
     end = False
     if command == 'n':
-        if player.cur_room.n_to != None:
+        if player.cur_room.n_to is not None:
             player.cur_room = player.cur_room.n_to
             display_desc(player.cur_room)
         else:
             print('You cannot go that way.')
 
     elif command == 'e':
-        if player.cur_room.e_to != None:
+        if player.cur_room.e_to is not None:
             player.cur_room = player.cur_room.e_to
             display_desc(player.cur_room)
         else:
             print('You cannot go that way.')
 
     elif command == 's':
-        if player.cur_room.s_to != None:
+        if player.cur_room.s_to is not None:
             player.cur_room = player.cur_room.s_to
             display_desc(player.cur_room)
         else:
             print('You cannot go that way.')
 
     elif command == 'w':
-        if player.cur_room.w_to != None:
+        if player.cur_room.w_to is not None:
             player.cur_room = player.cur_room.s_to
             display_desc(player.cur_room)
         else:
@@ -89,6 +89,7 @@ def movement(command, player):
 
     else:
         print('Enter a valid direction.')
+        
     return end
 
 def display_desc(room):
