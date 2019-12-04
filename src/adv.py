@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -49,3 +50,53 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+player = Player('Khaled', room['outside'])
+print(f'Hello {player.name}, your location: {player.cur_room.name}')
+print(player.cur_room.description)
+
+def movement(command, player):
+    end = False
+    if command == 'n':
+        if player.cur_room.n_to != None:
+            player.cur_room = player.cur_room.n_to
+            display_desc(player.cur_room)
+        else:
+            print('You cannot go that way.')
+
+    elif command == 'e':
+        if player.cur_room.e_to != None:
+            player.cur_room = player.cur_room.e_to
+            display_desc(player.cur_room)
+        else:
+            print('You cannot go that way.')
+
+    elif command == 's':
+        if player.cur_room.s_to != None:
+            player.cur_room = player.cur_room.s_to
+            display_desc(player.cur_room)
+        else:
+            print('You cannot go that way.')
+
+    elif command == 'w':
+        if player.cur_room.w_to != None:
+            player.cur_room = player.cur_room.s_to
+            display_desc(player.cur_room)
+        else:
+            print('You cannot go that way.')
+
+    elif command == 'q':
+        end = True
+
+    else:
+        print('Enter a valid direction.')
+    return end
+
+def display_desc(room):
+    print('You are in', room.name)
+    print(room.description)
+
+end = False
+while end == False:
+    end = movement(input(), player)
+
+print('Thanks for playing')
